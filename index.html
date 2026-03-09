@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>[YOUR NAME] — Tools & Engine Programmer</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 3rem 5rem;
+      z-index: 1;
+    }
+    .hero-inner { max-width: 680px; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--yellow);
+      border-radius: 100px;
+      padding: 0.4rem 1.1rem;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #7a6a20;
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.1s forwards;
+    }
+
+    .hero-name {
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.25s forwards;
+    }
+
+    .hero-name .underline {
+      color: var(--pink);
+      position: relative;
+      display: inline-block;
+    }
+    .hero-name .underline::after {
+      content: '';
+      position: absolute;
+      bottom: 4px; left: 0; right: 0;
+      height: 6px;
+      background: var(--pink);
+      border-radius: 3px;
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: scaleX 0.5s ease 0.95s forwards;
+    }
+
+    @keyframes scaleX { to { transform: scaleX(1); } }
+
+    .hero-role {
+      margin-top: 1.2rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--muted);
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.4s forwards;
+    }
+
+    .hero-desc {
+      margin-top: 0.8rem;
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 480px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.5s forwards;
+    }
+
+    .hero-cta {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.6s forwards;
+    }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-top: 2px solid var(--border);
+      border-bottom: 2px solid var(--border);
+    }
+
+    .stat-box {
+      background: var(--bg);
+      padding: 2rem;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .stat-box:hover { background: var(--pink-light); }
+
+    .stat-num {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--pink);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── FEATURED WORK ── */
+    #work {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 3rem;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .work-card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .work-card-link .card { height: 100%; }
+
+    .card-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--pink-dark);
+      margin-top: 0.5rem;
+      transition: gap 0.2s;
+    }
+    .work-card-link:hover .card-arrow { gap: 0.7rem; }
+
+    /* capstone card spans full width */
+    .span-2 { grid-column: 1 / -1; }
+    .span-2 .card-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    /* ── OTHER PROJECTS ── */
+    #other {
+      position: relative;
+      z-index: 1;
+      padding: 0 3rem 6rem;
+    }
+
+    .other-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+
+    .mini-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 2px solid var(--border);
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .mini-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.07);
+      border-color: var(--pink);
+    }
+
+    .mini-card-title {
+      font-size: 1rem;
+      font-weight: 900;
+      margin-bottom: 0.3rem;
+    }
+
+    .mini-card-type {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .mini-card-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      font-family: var(--font-serif);
+    }
+
+    .mini-card-footer {
+      margin-top: 1rem;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--pink-dark);
+    }
+
+    /* ── ABOUT STRIP ── */
+    #about {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 3rem;
+      background: var(--bg2);
+      border-top: 2px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 2px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.05);
+    }
+
+    .avatar {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--lavender));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 1rem;
+    }
+
+    .about-name-display {
+      font-size: 1.2rem;
+      font-weight: 900;
+      margin-bottom: 0.3rem;
+    }
+
+    .about-role-display {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .skill-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      justify-content: center;
+    }
+
+    .skill-chip {
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      border: 2px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .about-text {
+      font-family: var(--font-serif);
+      font-size: 1.08rem;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 2rem;
+    }
+    .about-text p + p { margin-top: 1rem; }
+
+    .about-headline {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .about-headline em { font-style: normal; color: var(--pink); }
+
+    /* ── CONTACT ── */
+    #contact {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 3rem;
+    }
+
+    .contact-box {
+      background: var(--card);
+      border-radius: 28px;
+      padding: 3.5rem;
+      border: 2px solid var(--border);
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.06);
+    }
+
+    .contact-emoji { font-size: 2.5rem; display: block; margin-bottom: 1rem; }
+
+    .contact-headline {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.8rem;
+    }
+
+    .contact-sub {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-links { display: flex; flex-direction: column; gap: 0.8rem; text-align: left; }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      border-radius: 14px;
+      border: 2px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 0.88rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .contact-row:hover { border-color: var(--pink); background: var(--pink-light); }
+
+    .contact-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-row small {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.1rem;
+    }
+
+    @media (max-width: 900px) {
+      .stats-strip { grid-template-columns: repeat(2, 1fr); }
+      .work-grid { grid-template-columns: 1fr; }
+      .span-2 { grid-column: auto; }
+      .span-2 .card-inner { grid-template-columns: 1fr; }
+      .other-grid { grid-template-columns: 1fr 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      #work, #other, #about, #contact { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .contact-box { padding: 2rem 1.5rem; }
+    }
+
+    @media (max-width: 580px) {
+      .other-grid { grid-template-columns: 1fr; }
+      .stats-strip { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <nav>
+    <a class="nav-logo" href="index.html"><span class="nav-dot"></span>[YOUR NAME]</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="internship.html">Internship</a></li>
+      <li><a href="capstone.html">Capstone</a></li>
+      <li><a href="games.html">Games</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">✦ Open to junior roles</div>
+      <h1 class="hero-name">
+        Hi, I'm<br/>
+        <span class="underline">[YOUR NAME]</span>
+      </h1>
+      <p class="hero-role">Tools &amp; Engine Programmer · Unity · Unreal</p>
+      <p class="hero-desc">
+        I build editor tools and runtime systems that make game development teams faster.
+        Shipped title experience at Airstrafe Interactive right out of college.
+      </p>
+      <div class="hero-cta">
+        <a href="#work" class="btn btn-pink">See my work ✦</a>
+        <a href="https://github.com/[YOUR-GITHUB]" target="_blank" class="btn btn-outline">GitHub ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-strip">
+    <div class="stat-box reveal">
+      <span class="stat-num">1</span>
+      <span class="stat-label">Shipped Title</span>
+    </div>
+    <div class="stat-box reveal">
+      <span class="stat-num">2k+</span>
+      <span class="stat-label">Spawners Managed</span>
+    </div>
+    <div class="stat-box reveal">
+      <span class="stat-num">2</span>
+      <span class="stat-label">Engines</span>
+    </div>
+    <div class="stat-box reveal">
+      <span class="stat-num">🏆</span>
+      <span class="stat-label">SAGE Game of the Year</span>
+    </div>
+  </div>
+
+  <!-- FEATURED WORK -->
+  <section id="work">
+    <span class="section-pill pill-mint">✦ Featured work</span>
+    <h2 class="section-title">Things I've shipped</h2>
+    <p style="color: var(--muted); font-family: var(--font-serif); font-size: 1rem; margin-bottom: 2.5rem;">Click any card to read the full story.</p>
+
+    <div class="work-grid">
+
+      <!-- Internship card -->
+      <a href="internship.html" class="work-card-link reveal">
+        <div class="card">
+          <div class="card-top-bar" style="background: linear-gradient(90deg, var(--pink), var(--lavender));"></div>
+          <div class="card-body">
+            <div class="card-img" style="background: var(--pink-light); color: var(--pink);">
+              [ Add screenshot here ]
+            </div>
+            <span class="card-badge badge-shipped">✓ Live on Steam</span>
+            <h3 class="card-title">Saleblazers — Airstrafe Interactive</h3>
+            <p class="card-studio">Unity · Tools &amp; Systems Programming Intern</p>
+            <p class="card-desc">
+              Built five major systems for a live multiplayer game — from a networked sleep system
+              handling host migration to a visualization tool managing 2,000+ world spawners.
+            </p>
+            <span class="card-arrow">Read full writeup →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Capstone card -->
+      <a href="capstone.html" class="work-card-link reveal">
+        <div class="card">
+          <div class="card-top-bar" style="background: linear-gradient(90deg, var(--lavender), var(--mint));"></div>
+          <div class="card-body">
+            <div class="card-img" style="background: var(--lav-light); color: var(--lavender);">
+              [ Add screenshot here ]
+            </div>
+            <span class="card-badge badge-school">🏆 SAGE Game of the Year</span>
+            <h3 class="card-title">[Capstone Game Title]</h3>
+            <p class="card-studio">Unity · Team of 40+</p>
+            <p class="card-desc">
+              Award-winning capstone project. Identified 70+ usability issues through weekly playtests,
+              and programmed gameplay systems including enemy vision cones and dynamic animation splines.
+            </p>
+            <span class="card-arrow">See full breakdown →</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- OTHER PROJECTS -->
+  <section id="other">
+    <span class="section-pill pill-peach">✦ Other projects</span>
+    <h2 class="section-title" style="margin-bottom: 0.5rem;">More things I've made</h2>
+    <p style="color: var(--muted); font-family: var(--font-serif); font-size: 1rem; margin-bottom: 2rem;">
+      Personal and jam games on itch.io — all playable in browser.
+    </p>
+
+    <div class="other-grid">
+      <a href="https://the64threalm.itch.io/no-leg-up" target="_blank" class="mini-card reveal">
+        <div class="card-badge badge-jam" style="margin-bottom: 0.8rem;">🎮 Platformer</div>
+        <div class="mini-card-title">No Leg Up</div>
+        <div class="mini-card-desc">A platformer — playable in browser on itch.io.</div>
+        <div class="mini-card-footer">Play on itch.io ↗</div>
+      </a>
+      <a href="https://the64threalm.itch.io/love-quest" target="_blank" class="mini-card reveal">
+        <div class="card-badge badge-jam" style="margin-bottom: 0.8rem;">🎮 RPG</div>
+        <div class="mini-card-title">Love Quest</div>
+        <div class="mini-card-desc">A role-playing game — playable in browser on itch.io.</div>
+        <div class="mini-card-footer">Play on itch.io ↗</div>
+      </a>
+      <a href="https://pkflunr.itch.io/zombee" target="_blank" class="mini-card reveal">
+        <div class="card-badge badge-jam" style="margin-bottom: 0.8rem;">🎮 Contributed</div>
+        <div class="mini-card-title">Zombee</div>
+        <div class="mini-card-desc">A game I contributed to — find it on itch.io.</div>
+        <div class="mini-card-footer">View on itch.io ↗</div>
+      </a>
+    </div>
+
+    <div style="margin-top: 1.5rem; text-align: center;">
+      <a href="games.html" class="btn btn-outline">See all games ↗</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <span class="section-pill pill-lav">✦ About me</span>
+    <div class="about-grid">
+      <div class="about-card reveal">
+        <div class="avatar">🛠️</div>
+        <div class="about-name-display">[YOUR NAME]</div>
+        <div class="about-role-display">Tools &amp; Engine Programmer</div>
+        <div class="skill-chips">
+          <span class="skill-chip">Unity / C#</span>
+          <span class="skill-chip">Unreal / C++</span>
+          <span class="skill-chip">Editor Tools</span>
+          <span class="skill-chip">Networking</span>
+          <span class="skill-chip">Runtime Systems</span>
+          <span class="skill-chip">Git</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <h2 class="about-headline">
+          I build things that make<br/><em>developers faster.</em>
+        </h2>
+        <div class="about-text">
+          <p>
+            I'm a junior tools and engine programmer, fresh out of [University],
+            with real shipped experience at Airstrafe Interactive on Saleblazers —
+            a live multiplayer game on Steam.
+          </p>
+          <p>
+            I love the work that sits between code and creativity: editor extensions,
+            designer-friendly pipelines, and runtime systems that just work.
+            I'm fluent in both Unity and Unreal and I'm looking for a team
+            where craft and collaboration are taken seriously.
+          </p>
+        </div>
+        <a href="#contact" class="btn btn-pink">Get in touch ✦</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-box reveal">
+      <span class="contact-emoji">✉️</span>
+      <h2 class="contact-headline">Let's work together!</h2>
+      <p class="contact-sub">
+        Looking for junior tools or engine programming roles. Open to studios of all sizes.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:[YOUR-EMAIL]" class="contact-row">
+          <div class="contact-icon" style="background: var(--pink-light);">✉</div>
+          <div><small>Email</small>[your@email.com]</div>
+        </a>
+        <a href="https://github.com/[YOUR-GITHUB]" target="_blank" class="contact-row">
+          <div class="contact-icon" style="background: var(--mint-light);">⌥</div>
+          <div><small>GitHub</small>github.com/[YOUR-GITHUB]</div>
+        </a>
+        <a href="https://linkedin.com/in/[YOUR-LINKEDIN]" target="_blank" class="contact-row">
+          <div class="contact-icon" style="background: var(--lav-light);">↗</div>
+          <div><small>LinkedIn</small>linkedin.com/in/[YOUR-LINKEDIN]</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>Made with ♥ by [YOUR NAME]</footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

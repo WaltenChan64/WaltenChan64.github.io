@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Games — [YOUR NAME]</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .page-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 8rem 2rem 6rem;
+    }
+
+    .page-header { margin-bottom: 4rem; }
+
+    .page-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .page-title em { font-style: normal; color: var(--pink); }
+
+    .page-desc {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.8;
+    }
+
+    /* ── FEATURED GAMES ── */
+    .games-section { margin-bottom: 4rem; }
+
+    .games-section-title {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .games-section-title::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: var(--border);
+    }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .game-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 2px solid var(--border);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .game-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+      border-color: var(--pink);
+    }
+
+    .game-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      overflow: hidden;
+    }
+    .game-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    .game-body { padding: 1.5rem; }
+
+    .game-genre {
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .game-title {
+      font-size: 1.2rem;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.5rem;
+    }
+
+    .game-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-family: var(--font-serif);
+      margin-bottom: 1rem;
+    }
+
+    .game-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .game-role {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .game-link {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--pink-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: gap 0.15s;
+    }
+    .game-card:hover .game-link { gap: 0.6rem; }
+
+    /* play badge */
+    .play-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: #e8f7ef;
+      color: #2a7a52;
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 0.22rem 0.65rem;
+      border-radius: 100px;
+      margin-bottom: 0.8rem;
+    }
+
+    /* contributed section */
+    .contrib-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .contrib-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.4rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, transform 0.2s;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .contrib-card:hover { border-color: var(--mint); transform: translateY(-2px); }
+
+    .contrib-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .contrib-title {
+      font-size: 0.95rem;
+      font-weight: 900;
+      margin-bottom: 0.25rem;
+    }
+
+    .contrib-meta {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .contrib-link {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--mint-dark);
+    }
+
+    /* itch CTA */
+    .itch-cta {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .itch-cta-emoji { font-size: 2rem; display: block; margin-bottom: 0.8rem; }
+
+    .itch-cta h3 {
+      font-size: 1.3rem;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+    }
+
+    .itch-cta p {
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 680px) {
+      .games-grid, .contrib-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="blob blob-1" style="background: var(--peach);"></div>
+  <div class="blob blob-2" style="background: var(--mint);"></div>
+  <div class="blob blob-3" style="background: var(--pink);"></div>
+
+  <nav>
+    <a class="nav-logo" href="index.html"><span class="nav-dot"></span>[YOUR NAME]</a>
+    <ul class="nav-links">
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="internship.html">Internship</a></li>
+      <li><a href="capstone.html">Capstone</a></li>
+      <li><a href="games.html" class="active">Games</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header reveal">
+      <span class="section-pill pill-peach">🎮 Personal projects</span>
+      <h1 class="page-title">Games I've<br/><em>made &amp; loved.</em></h1>
+      <p class="page-desc">
+        Personal projects, game jams, and collaborations — all the things I build
+        outside of work because I genuinely love making games.
+      </p>
+    </div>
+
+    <!-- MY GAMES -->
+    <div class="games-section">
+      <p class="games-section-title">My games</p>
+      <div class="games-grid">
+
+        <a href="https://the64threalm.itch.io/no-leg-up" target="_blank" class="game-card reveal">
+          <div class="card-top-bar" style="background: linear-gradient(90deg, var(--pink), var(--peach));"></div>
+          <div class="game-img" style="background: var(--pink-light); color: var(--pink);">
+            [ Add screenshot of No Leg Up ]
+          </div>
+          <div class="game-body">
+            <span class="play-badge">▶ Playable in browser</span>
+            <div class="game-genre">Platformer</div>
+            <div class="game-title">No Leg Up</div>
+            <p class="game-desc">
+              [Add a short description here — what's the game about? What makes it interesting?
+              What did you specifically work on?]
+            </p>
+            <div class="game-footer">
+              <span class="game-role">[Solo / Team · Engine]</span>
+              <span class="game-link">Play on itch.io →</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://the64threalm.itch.io/love-quest" target="_blank" class="game-card reveal">
+          <div class="card-top-bar" style="background: linear-gradient(90deg, var(--lavender), var(--pink));"></div>
+          <div class="game-img" style="background: var(--lav-light); color: var(--lav-dark);">
+            [ Add screenshot of Love Quest ]
+          </div>
+          <div class="game-body">
+            <span class="play-badge">▶ Playable in browser</span>
+            <div class="game-genre">RPG</div>
+            <div class="game-title">Love Quest</div>
+            <p class="game-desc">
+              [Add a short description here — what's the game about? What makes it interesting?
+              What did you specifically work on?]
+            </p>
+            <div class="game-footer">
+              <span class="game-role">[Solo / Team · Engine]</span>
+              <span class="game-link">Play on itch.io →</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- CONTRIBUTED TO -->
+    <div class="games-section">
+      <p class="games-section-title">Games I contributed to</p>
+      <div class="contrib-grid">
+
+        <a href="https://pkflunr.itch.io/zombee" target="_blank" class="contrib-card reveal">
+          <div class="contrib-icon">🐝</div>
+          <div>
+            <div class="contrib-title">Zombee</div>
+            <div class="contrib-meta">[Your role — e.g. Programmer]</div>
+            <p style="font-size: 0.8rem; color: var(--muted); font-family: var(--font-serif); line-height: 1.6; margin-bottom: 0.6rem;">
+              [Brief description — what is it, what did you work on?]
+            </p>
+            <span class="contrib-link">View on itch.io ↗</span>
+          </div>
+        </a>
+
+        <a href="https://project-riko.itch.io/lostsoles2" target="_blank" class="contrib-card reveal">
+          <div class="contrib-icon">👟</div>
+          <div>
+            <div class="contrib-title">Lost Soles 2</div>
+            <div class="contrib-meta">[Your role — e.g. Programmer]</div>
+            <p style="font-size: 0.8rem; color: var(--muted); font-family: var(--font-serif); line-height: 1.6; margin-bottom: 0.6rem;">
+              [Brief description — what is it, what did you work on?]
+            </p>
+            <span class="contrib-link">View on itch.io ↗</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- ITCH CTA -->
+    <div class="itch-cta reveal">
+      <span class="itch-cta-emoji">🎮</span>
+      <h3>See everything on itch.io</h3>
+      <p>All my games, including ones not listed here, are on my itch.io profile.</p>
+      <a href="https://the64threalm.itch.io/" target="_blank" class="btn btn-pink">Visit my itch.io ✦</a>
+    </div>
+
+  </div>
+
+  <footer>Made with ♥ by [YOUR NAME]</footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

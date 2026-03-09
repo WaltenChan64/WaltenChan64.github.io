@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Saleblazers Internship — [YOUR NAME]</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .page-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 8rem 2rem 6rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 2.5rem;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      border: 2px solid var(--border);
+      background: var(--card);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .back-link:hover { border-color: var(--pink); color: var(--text); }
+
+    /* ── HERO HEADER ── */
+    .project-hero {
+      margin-bottom: 4rem;
+    }
+
+    .project-hero-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .project-title-area h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-title-area h1 em {
+      font-style: normal;
+      color: var(--pink);
+    }
+
+    .project-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .meta-pill {
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .hero-img {
+      width: 100%;
+      aspect-ratio: 16/7;
+      background: var(--pink-light);
+      border-radius: var(--radius);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--pink);
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius); }
+
+    /* quick-stats row */
+    .quick-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .qs-box {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .qs-num {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--pink);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .qs-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── CONTENT ── */
+    .content-section {
+      margin-bottom: 4rem;
+    }
+
+    .content-section h2 {
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .content-section h2 .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .content-section .sub {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.2rem;
+    }
+
+    .content-body {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+    .content-body p + p { margin-top: 1rem; }
+
+    .highlight-box {
+      border-radius: var(--radius-sm);
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.6;
+      font-family: var(--font);
+    }
+
+    .section-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: var(--radius-sm);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin: 1.5rem 0;
+      overflow: hidden;
+    }
+    .section-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    .divider {
+      border: none;
+      border-top: 2px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    /* ── FEATURE LIST ── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.4rem;
+      transition: border-color 0.2s;
+    }
+    .feature-card:hover { border-color: var(--pink); }
+
+    .feature-icon {
+      font-size: 1.4rem;
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .feature-title {
+      font-size: 0.95rem;
+      font-weight: 900;
+      margin-bottom: 0.4rem;
+    }
+
+    .feature-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.65;
+      font-family: var(--font-serif);
+    }
+
+    /* ── NEXT PROJECT ── */
+    .next-project {
+      margin-top: 5rem;
+      padding-top: 3rem;
+      border-top: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .next-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .next-title {
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .next-title:hover { color: var(--pink-dark); }
+
+    @media (max-width: 680px) {
+      .quick-stats { grid-template-columns: repeat(2, 1fr); }
+      .feature-grid { grid-template-columns: 1fr; }
+      .project-meta { align-items: flex-start; }
+      .project-hero-top { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <nav>
+    <a class="nav-logo" href="index.html"><span class="nav-dot"></span>[YOUR NAME]</a>
+    <ul class="nav-links">
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="internship.html" class="active">Internship</a></li>
+      <li><a href="capstone.html">Capstone</a></li>
+      <li><a href="games.html">Games</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrap">
+    <a href="index.html" class="back-link">← Back to home</a>
+
+    <!-- HERO -->
+    <div class="project-hero reveal">
+      <div class="project-hero-top">
+        <div class="project-title-area">
+          <span class="section-pill pill-mint" style="margin-bottom: 1rem;">✓ Shipped &amp; Live on Steam</span>
+          <h1>Saleblazers<br/><em>Airstrafe Interactive</em></h1>
+          <p style="color: var(--muted); font-family: var(--font-serif); font-size: 1rem; margin-top: 0.5rem;">
+            Unity · C# · Tools &amp; Systems Programming Intern
+          </p>
+        </div>
+        <div class="project-meta">
+          <span class="meta-pill badge-shipped">✓ Live multiplayer game</span>
+          <span class="meta-pill" style="background: var(--mint-light); color: var(--mint-dark);">Unity / C#</span>
+          <a href="https://store.steampowered.com/app/1555860/Saleblazers/" target="_blank" class="btn btn-mint" style="font-size: 0.78rem; padding: 0.5rem 1.2rem; margin-top: 0.5rem;">View on Steam ↗</a>
+        </div>
+      </div>
+
+      <div class="hero-img">[ Add a header screenshot of Saleblazers here ]</div>
+
+      <div class="quick-stats">
+        <div class="qs-box">
+          <span class="qs-num">5</span>
+          <span class="qs-label">Major Systems</span>
+        </div>
+        <div class="qs-box">
+          <span class="qs-num">2k+</span>
+          <span class="qs-label">Spawners Managed</span>
+        </div>
+        <div class="qs-box">
+          <span class="qs-num">2</span>
+          <span class="qs-label">Server Types</span>
+        </div>
+        <div class="qs-box">
+          <span class="qs-num">Live</span>
+          <span class="qs-label">Still Receiving Updates</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- OVERVIEW -->
+    <div class="content-section reveal">
+      <p class="sub">Overview</p>
+      <h2><span class="dot" style="background: var(--pink);"></span>What I worked on</h2>
+      <div class="content-body">
+        <p>
+          Saleblazers is a multiplayer survival shop-building game on Steam, developed by Airstrafe Interactive.
+          During my internship I worked across several areas — runtime gameplay systems, editor tooling,
+          performance, and networking — shipping features that are still live in the game today.
+        </p>
+        <p>
+          Below is a breakdown of each major thing I built, including the technical decisions and tradeoffs involved.
+        </p>
+      </div>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- FEATURE 1: NPC CONVERSATION -->
+    <div class="content-section reveal">
+      <p class="sub">Feature 01</p>
+      <h2><span class="dot" style="background: var(--pink);"></span>NPC Conversation Generation System</h2>
+      <div class="section-img" style="background: var(--pink-light); color: var(--pink);">[ Add screenshot of NPC system or in-game dialogue here ]</div>
+      <div class="content-body">
+        <p>
+          I built a fully modular NPC conversation generation system that assembles ambient dialogue dynamically at runtime.
+          Rather than hard-coding NPC conversations, the system draws from designer-authored dialogue fragments
+          and combines them contextually — making the world feel more alive without requiring constant manual scripting.
+        </p>
+        <p>
+          A key goal was making the system accessible to designers without needing to touch code.
+          I wrote a companion technical document explaining the flow of the conversation system
+          so designers could author and iterate on dialogue independently.
+        </p>
+      </div>
+      <div class="highlight-box" style="background: var(--pink-light); color: #8a3a52;">
+        💡 Designers could add, test, and adjust dialogue without filing a code request or waiting for a programmer — cutting iteration time significantly.
+      </div>
+      <div class="content-body">
+        <p>[Add any additional technical details here — e.g. how fragments were selected, any data structures you used, how it was triggered in the world.]</p>
+      </div>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- FEATURE 2: SPAWNER TOOL -->
+    <div class="content-section reveal">
+      <p class="sub">Feature 02</p>
+      <h2><span class="dot" style="background: var(--mint-dark);"></span>World Spawner &amp; Patrol Route Visualizer</h2>
+      <div class="section-img" style="background: var(--mint-light); color: var(--mint-dark);">[ Add screenshot of the spawner editor tool here ]</div>
+      <div class="content-body">
+        <p>
+          I collaborated with designers to build a custom Unity editor extension that visualizes
+          2,000+ world spawners, NPC patrol routes, and loading zones — all in a single, glanceable view.
+          Each spawner shows its type, state, and configuration directly in the editor,
+          and designers can edit them on the fly without hunting through scene hierarchies.
+        </p>
+        <p>
+          At 2,000+ spawners, the previous workflow of cross-referencing spreadsheets and scene files
+          didn't scale. The tool replaced it entirely.
+        </p>
+      </div>
+      <div class="highlight-box" style="background: var(--mint-light); color: #2a6a58;">
+        💡 The entire world — every spawner, patrol route, and loading zone — now auditable and editable in one view.
+      </div>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- FEATURE 3: NETWORKED SLEEP -->
+    <div class="content-section reveal">
+      <p class="sub">Feature 03</p>
+      <h2><span class="dot" style="background: var(--lavender);"></span>Networked Multiplayer Sleep System</h2>
+      <div class="section-img" style="background: var(--lav-light); color: var(--lav-dark);">[ Add screenshot of sleep UI or related in-game screen here ]</div>
+      <div class="content-body">
+        <p>
+          I designed and implemented a fully networked sleep system for Saleblazers' multiplayer sessions.
+          The core challenge: when multiple players want to sleep, the game needs to agree on how many hours
+          are available — determined by whichever player has the fewest hours they can sleep.
+        </p>
+        <p>
+          This required syncing all connected players in real time, electing a "sleep leader" who gets
+          the final say on the sleep duration, and handling the case where that leader disconnects mid-decision.
+        </p>
+        <p>
+          The system also had to behave correctly across two fundamentally different network topologies:
+          P2P sessions (where the host is always the sleep leader) and dedicated servers
+          (where the leader role needs to migrate if the current leader leaves).
+        </p>
+      </div>
+      <div class="highlight-box" style="background: var(--lav-light); color: var(--lav-dark);">
+        💡 The trickiest part was leader migration on dedicated servers — unlike P2P where the host is always present, a dedicated server session needed a clean handoff when the leader disconnected mid-vote.
+      </div>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- FEATURE 4: TERRAIN + AUDIO -->
+    <div class="content-section reveal">
+      <p class="sub">Feature 04</p>
+      <h2><span class="dot" style="background: var(--peach);"></span>Terrain Loading &amp; Audio Rework</h2>
+      <div class="section-img" style="background: var(--peach-light); color: #b06a20;">[ Add screenshot of terrain or world environment here ]</div>
+      <div class="content-body">
+        <p>
+          I reworked the terrain loading and camera system to reduce visual popping — the jarring moment
+          when terrain chunks load in abruptly as the player moves through the world.
+          The changes made transitions smoother and less noticeable to players.
+        </p>
+        <p>
+          As part of the same pass, I precomputed the ambient "grassy" sounds that should play
+          from each location in the world, rather than calculating them dynamically.
+          This reduced per-frame audio overhead and improved consistency across the soundscape.
+        </p>
+      </div>
+      <div class="highlight-box" style="background: var(--peach-light); color: #8a4a10;">
+        💡 Performance work that players feel but never notice — exactly how it should be.
+      </div>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- FEATURE 5: BUGS + VOICE -->
+    <div class="content-section reveal">
+      <p class="sub">Feature 05</p>
+      <h2><span class="dot" style="background: var(--yellow);"></span>Voice Communication &amp; Bug Fixes</h2>
+      <div class="content-body">
+        <p>
+          I wrote the networked voice communication feature, allowing players to talk to each other
+          in-game sessions. I also spent significant time addressing player-reported bugs —
+          working through the issue tracker, reproducing problems, and shipping fixes that improved
+          overall gameplay stability and responsiveness.
+        </p>
+        <p>
+          Bug fixing on a live game is different from fixing bugs in a project environment —
+          you're working in a large unfamiliar codebase, under time pressure,
+          and changes affect real players immediately. It was some of the most useful
+          experience I got during the internship.
+        </p>
+      </div>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- REFLECTIONS -->
+    <div class="content-section reveal">
+      <p class="sub">Reflections</p>
+      <h2><span class="dot" style="background: var(--pink);"></span>What I learned</h2>
+      <div class="content-body">
+        <p>
+          [Add a short personal reflection here — what surprised you, what was harder than expected,
+          what you'd do differently. Even 2–3 sentences makes the page feel more human and genuine.]
+        </p>
+      </div>
+    </div>
+
+    <!-- NEXT PROJECT -->
+    <div class="next-project reveal">
+      <div>
+        <span class="next-label">Next project</span>
+        <a href="capstone.html" class="next-title">[Capstone Game Title] →</a>
+      </div>
+      <a href="capstone.html" class="btn btn-pink">See capstone ✦</a>
+    </div>
+  </div>
+
+  <footer>Made with ♥ by [YOUR NAME]</footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

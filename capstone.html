@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>[Capstone Title] — [YOUR NAME]</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .page-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 8rem 2rem 6rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 2.5rem;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      border: 2px solid var(--border);
+      background: var(--card);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .back-link:hover { border-color: var(--lavender); color: var(--text); }
+
+    .project-hero-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .project-title-area h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-title-area h1 em {
+      font-style: normal;
+      color: var(--lavender);
+    }
+
+    .project-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .meta-pill {
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .hero-img {
+      width: 100%;
+      aspect-ratio: 16/7;
+      background: var(--lav-light);
+      border-radius: var(--radius);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--lavender);
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius); }
+
+    .quick-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .qs-box {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .qs-num {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--lav-dark);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .qs-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .content-section { margin-bottom: 4rem; }
+
+    .content-section h2 {
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .content-section h2 .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .content-section .sub {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.2rem;
+    }
+
+    .content-body {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+    .content-body p + p { margin-top: 1rem; }
+
+    .highlight-box {
+      border-radius: var(--radius-sm);
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.6;
+      font-family: var(--font);
+    }
+
+    .section-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: var(--radius-sm);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin: 1.5rem 0;
+      overflow: hidden;
+    }
+    .section-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    .divider {
+      border: none;
+      border-top: 2px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    /* awards */
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .award-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.3rem;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+    .award-card:hover { border-color: var(--lavender); }
+
+    .award-icon { font-size: 1.8rem; display: block; margin-bottom: 0.6rem; }
+
+    .award-title {
+      font-size: 0.9rem;
+      font-weight: 900;
+      margin-bottom: 0.25rem;
+    }
+
+    .award-body {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    /* screenshots grid */
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .screenshot-slot {
+      aspect-ratio: 16/9;
+      background: var(--lav-light);
+      border-radius: var(--radius-sm);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--lav-dark);
+      overflow: hidden;
+    }
+    .screenshot-slot img { width: 100%; height: 100%; object-fit: cover; }
+
+    .next-project {
+      margin-top: 5rem;
+      padding-top: 3rem;
+      border-top: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .next-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .next-title {
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .next-title:hover { color: var(--pink-dark); }
+
+    @media (max-width: 680px) {
+      .quick-stats { grid-template-columns: repeat(2, 1fr); }
+      .awards-grid { grid-template-columns: 1fr 1fr; }
+      .screenshots-grid { grid-template-columns: 1fr; }
+      .project-meta { align-items: flex-start; }
+      .project-hero-top { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="blob blob-1" style="background: var(--lavender);"></div>
+  <div class="blob blob-2" style="background: var(--mint);"></div>
+  <div class="blob blob-3" style="background: var(--pink);"></div>
+
+  <nav>
+    <a class="nav-logo" href="index.html"><span class="nav-dot"></span>[YOUR NAME]</a>
+    <ul class="nav-links">
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="internship.html">Internship</a></li>
+      <li><a href="capstone.html" class="active">Capstone</a></li>
+      <li><a href="games.html">Games</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrap">
+    <a href="index.html" class="back-link">← Back to home</a>
+
+    <!-- HERO -->
+    <div class="reveal">
+      <div class="project-hero-top">
+        <div class="project-title-area">
+          <span class="section-pill pill-lav" style="margin-bottom: 1rem;">🏆 SAGE Game of the Year</span>
+          <h1>[Capstone<br/><em>Game Title]</em></h1>
+          <p style="color: var(--muted); font-family: var(--font-serif); font-size: 1rem; margin-top: 0.5rem;">
+            Unity · [Your University] · Team of 40+
+          </p>
+        </div>
+        <div class="project-meta">
+          <span class="meta-pill badge-school">🎓 Capstone Project</span>
+          <span class="meta-pill" style="background: var(--mint-light); color: var(--mint-dark);">Unity / C#</span>
+          <!-- Add a link if the game has an itch/steam page -->
+          <!-- <a href="YOUR-GAME-LINK" target="_blank" class="btn btn-outline" style="font-size: 0.78rem; padding: 0.5rem 1.2rem; margin-top: 0.5rem;">Play the game ↗</a> -->
+        </div>
+      </div>
+
+      <div class="hero-img">[ Add a header screenshot of your capstone game here ]</div>
+
+      <div class="quick-stats">
+        <div class="qs-box">
+          <span class="qs-num">40+</span>
+          <span class="qs-label">Team Size</span>
+        </div>
+        <div class="qs-box">
+          <span class="qs-num">70+</span>
+          <span class="qs-label">Usability Issues Found</span>
+        </div>
+        <div class="qs-box">
+          <span class="qs-num">80+</span>
+          <span class="qs-label">Bugs Identified</span>
+        </div>
+        <div class="qs-box">
+          <span class="qs-num">3</span>
+          <span class="qs-label">Awards Won</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- AWARDS -->
+    <div class="content-section reveal">
+      <p class="sub">Recognition</p>
+      <h2><span class="dot" style="background: var(--yellow);"></span>Awards</h2>
+      <div class="awards-grid">
+        <div class="award-card">
+          <span class="award-icon">🥇</span>
+          <div class="award-title">SAGE: Game of the Year</div>
+          <div class="award-body">Student Game of the Year</div>
+        </div>
+        <div class="award-card">
+          <span class="award-icon">🏆</span>
+          <div class="award-title">SAGE: 1st in Design</div>
+          <div class="award-body">Best Design Award</div>
+        </div>
+        <div class="award-card">
+          <span class="award-icon">🎮</span>
+          <div class="award-title">CGC: 1st in Interactive</div>
+          <div class="award-body">+ 2nd in Cinematic</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- OVERVIEW -->
+    <div class="content-section reveal">
+      <p class="sub">Overview</p>
+      <h2><span class="dot" style="background: var(--lav-dark);"></span>About the project</h2>
+      <div class="content-body">
+        <p>
+          [Describe the game in 2-3 sentences. What genre is it? What's the core concept?
+          What made it stand out enough to win Game of the Year?]
+        </p>
+        <p>
+          I worked on a team of 40+ people over [duration], taking on both a programming role
+          and an active part in the playtesting and quality process throughout development.
+        </p>
+      </div>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- PROGRAMMING -->
+    <div class="content-section reveal">
+      <p class="sub">Programming</p>
+      <h2><span class="dot" style="background: var(--mint-dark);"></span>What I built</h2>
+      <div class="section-img" style="background: var(--mint-light); color: var(--mint-dark);">
+        [ Add screenshot showing enemy vision cones or gameplay systems here ]
+      </div>
+      <div class="content-body">
+        <p>
+          I programmed several gameplay systems focused on improving player comprehension and game feel.
+          This included enemy vision cones — a visual indicator system showing players
+          exactly what enemies can see, helping them make informed stealth decisions.
+        </p>
+        <p>
+          I also implemented dynamic animation splines, which [describe what this does and
+          why it improves the game — e.g. smoother character movement, better cinematic feel, etc.].
+        </p>
+        <p>
+          [Add any other systems you built here — even brief descriptions are great.]
+        </p>
+      </div>
+      <div class="highlight-box" style="background: var(--mint-light); color: #2a6a58;">
+        💡 [Add your best technical achievement from the capstone here — the thing you're most proud of building.]
+      </div>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- PLAYTESTING -->
+    <div class="content-section reveal">
+      <p class="sub">Quality &amp; Playtesting</p>
+      <h2><span class="dot" style="background: var(--pink);"></span>Running the playtest process</h2>
+      <div class="content-body">
+        <p>
+          I designed and conducted weekly playtests throughout development, creating structured
+          test sessions and systematically documenting what I found.
+          Over the course of the project I identified 70+ usability issues and 80+ bugs —
+          working with the full team to track and address them.
+        </p>
+        <p>
+          Many of the issues involved player comprehension — places where the game wasn't
+          communicating clearly enough what the player was supposed to do, or why something
+          wasn't working. Bridging that gap between what the developers intended and
+          what players actually experienced was some of the most valuable work on the project.
+        </p>
+      </div>
+      <div class="highlight-box" style="background: var(--pink-light); color: #8a3a52;">
+        💡 Running a structured playtest process on a 40+ person team meant the whole project stayed grounded in how real players actually experienced the game — not just how we imagined they would.
+      </div>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- SCREENSHOTS -->
+    <div class="content-section reveal">
+      <p class="sub">Gallery</p>
+      <h2><span class="dot" style="background: var(--lavender);"></span>Screenshots</h2>
+      <div class="screenshots-grid">
+        <div class="screenshot-slot">[ Screenshot 1 ]</div>
+        <div class="screenshot-slot">[ Screenshot 2 ]</div>
+        <div class="screenshot-slot">[ Screenshot 3 ]</div>
+        <div class="screenshot-slot">[ Screenshot 4 ]</div>
+      </div>
+    </div>
+
+    <!-- NEXT -->
+    <div class="next-project reveal">
+      <div>
+        <span class="next-label">See more</span>
+        <a href="games.html" class="next-title">My games on itch.io →</a>
+      </div>
+      <a href="games.html" class="btn btn-pink">View games ✦</a>
+    </div>
+  </div>
+
+  <footer>Made with ♥ by [YOUR NAME]</footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
