@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Games — [YOUR NAME]</title>
+  <title>Games — ^NAME$</title>
   <link rel="stylesheet" href="style.css"/>
   <style>
     .page-wrap {
@@ -236,16 +236,7 @@
   <div class="blob blob-2" style="background: var(--mint);"></div>
   <div class="blob blob-3" style="background: var(--pink);"></div>
 
-  <nav>
-    <a class="nav-logo" href="index.html"><span class="nav-dot"></span>[YOUR NAME]</a>
-    <ul class="nav-links">
-      <li><a href="index.html#work">Work</a></li>
-      <li><a href="internship.html">Internship</a></li>
-      <li><a href="capstone.html">Capstone</a></li>
-      <li><a href="games.html" class="active">Games</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
-    </ul>
-  </nav>
+  <script src="nav.js"></script>
 
   <div class="page-wrap">
 
@@ -263,21 +254,20 @@
       <p class="games-section-title">My games</p>
       <div class="games-grid">
 
-        <a href="https://the64threalm.itch.io/no-leg-up" target="_blank" class="game-card reveal">
+        <a href="https://luvam.itch.io/henry-the-loopfish" target="_blank" class="game-card reveal">
           <div class="card-top-bar" style="background: linear-gradient(90deg, var(--pink), var(--peach));"></div>
           <div class="game-img" style="background: var(--pink-light); color: var(--pink);">
-            [ Add screenshot of No Leg Up ]
+            <img src="assets/Henry-The-Loopfish-icon.png" alt="Henry The Loopfish Icon">
           </div>
           <div class="game-body">
             <span class="play-badge">▶ Playable in browser</span>
-            <div class="game-genre">Platformer</div>
-            <div class="game-title">No Leg Up</div>
+            <div class="game-genre">Puzzle Platformer</div>
+            <div class="game-title">Henry The Loopfish</div>
             <p class="game-desc">
-              [Add a short description here — what's the game about? What makes it interesting?
-              What did you specifically work on?]
+              A platformer about choosing the order of your actions beforehand, I worked on the UI and switching between edit and play mode.
             </p>
             <div class="game-footer">
-              <span class="game-role">[Solo / Team · Engine]</span>
+              <span class="game-role">Team · Unity</span>
               <span class="game-link">Play on itch.io →</span>
             </div>
           </div>
@@ -286,18 +276,17 @@
         <a href="https://the64threalm.itch.io/love-quest" target="_blank" class="game-card reveal">
           <div class="card-top-bar" style="background: linear-gradient(90deg, var(--lavender), var(--pink));"></div>
           <div class="game-img" style="background: var(--lav-light); color: var(--lav-dark);">
-            [ Add screenshot of Love Quest ]
+            <img src="assets/Love-Quest-Icon.png" alt="Love Quest Menu Screen">
           </div>
           <div class="game-body">
             <span class="play-badge">▶ Playable in browser</span>
             <div class="game-genre">RPG</div>
             <div class="game-title">Love Quest</div>
             <p class="game-desc">
-              [Add a short description here — what's the game about? What makes it interesting?
-              What did you specifically work on?]
+              A dating simulator about toxic relationships, I led development and programmed the dialogue and battle scenes, both loaded from jsons for easy tweaking.
             </p>
             <div class="game-footer">
-              <span class="game-role">[Solo / Team · Engine]</span>
+              <span class="game-role">Team · Godot</span>
               <span class="game-link">Play on itch.io →</span>
             </div>
           </div>
@@ -315,9 +304,9 @@
           <div class="contrib-icon">🐝</div>
           <div>
             <div class="contrib-title">Zombee</div>
-            <div class="contrib-meta">[Your role — e.g. Programmer]</div>
+            <div class="contrib-meta">Programmer</div>
             <p style="font-size: 0.8rem; color: var(--muted); font-family: var(--font-serif); line-height: 1.6; margin-bottom: 0.6rem;">
-              [Brief description — what is it, what did you work on?]
+              A 2D shooter set in a procedurally generated maze made in Godot. I created the different enemies and weapons.
             </p>
             <span class="contrib-link">View on itch.io ↗</span>
           </div>
@@ -326,10 +315,10 @@
         <a href="https://project-riko.itch.io/lostsoles2" target="_blank" class="contrib-card reveal">
           <div class="contrib-icon">👟</div>
           <div>
-            <div class="contrib-title">Lost Soles 2</div>
-            <div class="contrib-meta">[Your role — e.g. Programmer]</div>
+            <div class="contrib-title">Shoemaker's Spirit - Lost Soles</div>
+            <div class="contrib-meta">Programmer </div>
             <p style="font-size: 0.8rem; color: var(--muted); font-family: var(--font-serif); line-height: 1.6; margin-bottom: 0.6rem;">
-              [Brief description — what is it, what did you work on?]
+              A 2D shooter made using p5js, I worked on the enemy AI and mechanics
             </p>
             <span class="contrib-link">View on itch.io ↗</span>
           </div>
@@ -348,7 +337,7 @@
 
   </div>
 
-  <footer>Made with ♥ by [YOUR NAME]</footer>
+  <footer></footer>
 
   <script>
     const observer = new IntersectionObserver((entries) => {

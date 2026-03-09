@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>[YOUR NAME] — Tools & Engine Programmer</title>
+  <title>^NAME$ — Gameplay & Tools Programmer</title>
   <link rel="stylesheet" href="style.css"/>
   <style>
     /* ── HERO ── */
@@ -400,16 +400,7 @@
   <div class="blob blob-2"></div>
   <div class="blob blob-3"></div>
 
-  <nav>
-    <a class="nav-logo" href="index.html"><span class="nav-dot"></span>[YOUR NAME]</a>
-    <ul class="nav-links">
-      <li><a href="#work">Work</a></li>
-      <li><a href="internship.html">Internship</a></li>
-      <li><a href="capstone.html">Capstone</a></li>
-      <li><a href="games.html">Games</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+  <script src="nav.js"></script>
 
   <!-- HERO -->
   <div class="hero">
@@ -417,16 +408,16 @@
       <div class="hero-badge">✦ Open to junior roles</div>
       <h1 class="hero-name">
         Hi, I'm<br/>
-        <span class="underline">[YOUR NAME]</span>
+        <span class="underline"><span data-name></span></span>
       </h1>
-      <p class="hero-role">Tools &amp; Engine Programmer · Unity · Unreal</p>
+      <p class="hero-role"><span data-title></span> · Unity · Unreal</p>
       <p class="hero-desc">
         I build editor tools and runtime systems that make game development teams faster.
         Shipped title experience at Airstrafe Interactive right out of college.
       </p>
       <div class="hero-cta">
         <a href="#work" class="btn btn-pink">See my work ✦</a>
-        <a href="https://github.com/[YOUR-GITHUB]" target="_blank" class="btn btn-outline">GitHub ↗</a>
+        <a data-itch target="_blank" class="btn btn-outline">Itch ↗</a>
       </div>
     </div>
   </div>
@@ -460,41 +451,42 @@
     <div class="work-grid">
 
       <!-- Internship card -->
-      <a href="internship.html" class="work-card-link reveal">
+      <a href="airstrafe.html" class="work-card-link reveal">
         <div class="card">
           <div class="card-top-bar" style="background: linear-gradient(90deg, var(--pink), var(--lavender));"></div>
           <div class="card-body">
             <div class="card-img" style="background: var(--pink-light); color: var(--pink);">
-              [ Add screenshot here ]
+              <img src="assets/Saleblazers-icon.jpeg" alt="Saleblazers trailer screenshot">
             </div>
             <span class="card-badge badge-shipped">✓ Live on Steam</span>
             <h3 class="card-title">Saleblazers — Airstrafe Interactive</h3>
-            <p class="card-studio">Unity · Tools &amp; Systems Programming Intern</p>
+            <p class="card-studio">Gameplay Programming Intern</p>
             <p class="card-desc">
               Built five major systems for a live multiplayer game — from a networked sleep system
               handling host migration to a visualization tool managing 2,000+ world spawners.
             </p>
-            <span class="card-arrow">Read full writeup →</span>
+            <span class="card-arrow">Read more →</span>
           </div>
         </div>
       </a>
 
       <!-- Capstone card -->
-      <a href="capstone.html" class="work-card-link reveal">
+      <a href="smoke-break.html" class="work-card-link reveal">
         <div class="card">
           <div class="card-top-bar" style="background: linear-gradient(90deg, var(--lavender), var(--mint));"></div>
           <div class="card-body">
             <div class="card-img" style="background: var(--lav-light); color: var(--lavender);">
-              [ Add screenshot here ]
+              <img src="assets/smoke-break-icon.png" alt="smoke break logo screenshot">
             </div>
             <span class="card-badge badge-school">🏆 SAGE Game of the Year</span>
-            <h3 class="card-title">[Capstone Game Title]</h3>
-            <p class="card-studio">Unity · Team of 40+</p>
+            <h3 class="card-title">Smoke Break</h3>
+            <p class="card-studio">Unity · USC AGP · Usability Lead</p>
             <p class="card-desc">
-              Award-winning capstone project. Identified 70+ usability issues through weekly playtests,
-              and programmed gameplay systems including enemy vision cones and dynamic animation splines.
+              Usability Lead on an award-winning 40+ person student project at USC.
+              Ran weekly playtests, identified 70+ usability issues and 80+ bugs,
+              and also contributed programming including enemy vision cones and dynamic animation splines.
             </p>
-            <span class="card-arrow">See full breakdown →</span>
+            <span class="card-arrow">Read more →</span>
           </div>
         </div>
       </a>
@@ -507,10 +499,16 @@
     <span class="section-pill pill-peach">✦ Other projects</span>
     <h2 class="section-title" style="margin-bottom: 0.5rem;">More things I've made</h2>
     <p style="color: var(--muted); font-family: var(--font-serif); font-size: 1rem; margin-bottom: 2rem;">
-      Personal and jam games on itch.io — all playable in browser.
+      Personal and jam games on itch.io.
     </p>
 
     <div class="other-grid">
+      <a href="https://luvam.itch.io/henry-the-loopfish" target="_blank" class="mini-card reveal">
+        <div class="card-badge badge-jam" style="margin-bottom: 0.8rem;">🎮 Platformer</div>
+        <div class="mini-card-title">Henry The Loopfish</div>
+        <div class="mini-card-desc">A platformer — playable in browser on itch.io.</div>
+        <div class="mini-card-footer">Play on itch.io ↗</div>
+      </a>
       <a href="https://the64threalm.itch.io/no-leg-up" target="_blank" class="mini-card reveal">
         <div class="card-badge badge-jam" style="margin-bottom: 0.8rem;">🎮 Platformer</div>
         <div class="mini-card-title">No Leg Up</div>
@@ -542,8 +540,8 @@
     <div class="about-grid">
       <div class="about-card reveal">
         <div class="avatar">🛠️</div>
-        <div class="about-name-display">[YOUR NAME]</div>
-        <div class="about-role-display">Tools &amp; Engine Programmer</div>
+        <div class="about-name-display"><span data-name></span></div>
+        <div class="about-role-display"><span data-title></span></div>
         <div class="skill-chips">
           <span class="skill-chip">Unity / C#</span>
           <span class="skill-chip">Unreal / C++</span>
@@ -559,13 +557,13 @@
         </h2>
         <div class="about-text">
           <p>
-            I'm a junior tools and engine programmer, fresh out of [University],
-            with real shipped experience at Airstrafe Interactive on Saleblazers —
+            I'm a junior gameplay and tools programming, fresh out of the University of Southern California,
+            with real shipped experience at Airstrafe Interactive on <a href="https://store.steampowered.com/app/1419850/Saleblazers/">Saleblazers</a> —
             a live multiplayer game on Steam.
           </p>
           <p>
             I love the work that sits between code and creativity: editor extensions,
-            designer-friendly pipelines, and runtime systems that just work.
+            designer-friendly pipelines, and runtime systems.
             I'm fluent in both Unity and Unreal and I'm looking for a team
             where craft and collaboration are taken seriously.
           </p>
@@ -581,26 +579,26 @@
       <span class="contact-emoji">✉️</span>
       <h2 class="contact-headline">Let's work together!</h2>
       <p class="contact-sub">
-        Looking for junior tools or engine programming roles. Open to studios of all sizes.
+        Looking for junior gameplay and tools programming roles. Open to studios of all sizes.
       </p>
       <div class="contact-links">
-        <a href="mailto:[YOUR-EMAIL]" class="contact-row">
+        <a data-email class="contact-row">
           <div class="contact-icon" style="background: var(--pink-light);">✉</div>
-          <div><small>Email</small>[your@email.com]</div>
+          <div><small>Email</small><span data-email></span></div>
         </a>
-        <a href="https://github.com/[YOUR-GITHUB]" target="_blank" class="contact-row">
+        <a data-github target="_blank" class="contact-row">
           <div class="contact-icon" style="background: var(--mint-light);">⌥</div>
-          <div><small>GitHub</small>github.com/[YOUR-GITHUB]</div>
+          <div><small>GitHub</small><span data-github></span></div>
         </a>
-        <a href="https://linkedin.com/in/[YOUR-LINKEDIN]" target="_blank" class="contact-row">
+        <a data-linkedin target="_blank" class="contact-row">
           <div class="contact-icon" style="background: var(--lav-light);">↗</div>
-          <div><small>LinkedIn</small>linkedin.com/in/[YOUR-LINKEDIN]</div>
+          <div><small>LinkedIn</small><span data-linkedin></span></div>
         </a>
       </div>
     </div>
   </section>
 
-  <footer>Made with ♥ by [YOUR NAME]</footer>
+  <footer></footer>
 
   <script>
     const observer = new IntersectionObserver((entries) => {
