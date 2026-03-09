@@ -11,10 +11,11 @@ const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 
 const links = [
   { href: 'index.html',         label: 'Home',        match: 'index.html' },
-  { href: 'airstrafe.html',     label: 'Saleblazers',  match: 'airstrafe.html' },
+  { href: 'airstrafe.html',     label: 'Saleblazers', match: 'airstrafe.html' },
   { href: 'smoke-break.html',   label: 'Smoke Break', match: 'smoke-break.html' },
   { href: 'games.html',         label: 'Games',       match: 'games.html' },
   { href: 'index.html#contact', label: 'Contact',     match: null },
+  { href: 'assets/Resume.pdf',  label: 'Resume ↗',    match: null },
 ];
 
 const navHTML = `
